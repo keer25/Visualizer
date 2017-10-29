@@ -45,5 +45,7 @@ for i in range(len(lyrics)):
 		time += 0.04
 	# Update cur
 		cur = results[i]['score']
+
+print(time)
 print(now)
 print(len(sentiments))
