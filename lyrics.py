@@ -4,7 +4,7 @@ import requests
 # [01:59.80]
 
 def gettime(line):
-	return int(line[1:3])*60 + float(line[4:9])
+	return int(line[1:3])*60 + float(line[4:6])
 
 url = 'https://southeastasia.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment'
 
@@ -19,7 +19,7 @@ for i in range(len(lyrics)):
 	d = {}
 	d['language'] = 'en'
 	d['id'] = i+1
-	d['text'] = lyrics[i][0]
+	d['text'] = lyrics[i][0][7:]
 	documents.append(d)
 
 j = {}
@@ -36,7 +36,7 @@ results = response.json()['documents']
 print(len(results))
 
 sentiments = []
-cur = 0
+cur = 0.5
 time = 0
 for i in range(len(lyrics)):
 	now = gettime(lyrics[i][0])
@@ -48,4 +48,4 @@ for i in range(len(lyrics)):
 
 print(time)
 print(now)
-print(len(sentiments))
+print(sentiments)
